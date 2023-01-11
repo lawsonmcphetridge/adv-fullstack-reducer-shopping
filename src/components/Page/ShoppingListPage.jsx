@@ -1,5 +1,15 @@
+import ShoppingPostList from './ShoppingPostList';
+
 export default function ShoppingListPage() {
-  return <section>
-    <h1>My Shopping List</h1>
-  </section>;
+  const shoppingList = [
+    {
+      id: '1',
+      body: 'first post',
+    },
+  ];
+  return (
+    <>
+      <ShoppingPostList shoppingList={shoppingList} />
+    </>
+  );
 }

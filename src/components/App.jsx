@@ -7,8 +7,9 @@ import {
 import { useEffect } from 'react';
 import Layout from './Page/Layout.jsx';
 import './Design.css';
-import ShoppingListPage from './Page/ShoppingListPage.jsx';
+
 import { getShoppingListItems } from '../services/shopping-list-items.js';
+import ShoppingListPage from './Page/ShoppingListPage.jsx';
 
 export default function App() {
   // This is just to prove we actually can get some items from Supabase without
