@@ -10,6 +10,7 @@ import './Design.css';
 
 import { getShoppingListItems } from '../services/shopping-list-items.js';
 import ShoppingListPage from './Page/ShoppingListPage.jsx';
+import { PostListProvider } from './ShoppingListProvider.jsx';
 
 export default function App() {
   // This is just to prove we actually can get some items from Supabase without
@@ -22,12 +23,14 @@ export default function App() {
   }, []);
   return (
     <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<ShoppingListPage />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <PostListProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<ShoppingListPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </PostListProvider>
     </Router>
   );
 }

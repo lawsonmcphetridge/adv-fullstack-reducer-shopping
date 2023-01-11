@@ -1,15 +1,12 @@
 import ShoppingPostList from './ShoppingPostList';
+import { Context } from '../ShoppingListProvider.jsx';
+import { useContext } from 'react';
 
 export default function ShoppingListPage() {
-  const shoppingList = [
-    {
-      id: '1',
-      body: 'first post',
-    },
-  ];
+  const { state, dispatch } = useContext(Context);
   return (
     <>
-      <ShoppingPostList shoppingList={shoppingList} />
+      <ShoppingPostList shoppingList={state.shoppingList} />
     </>
   );
 }
