@@ -3,6 +3,7 @@ import {
   initialState,
   reducer,
 } from './reducers/shopping-list-reducer';
+import { reducerLogger } from './reducers/reducer-logger';
 
 export const Context = createContext({
   state: initialState(),
@@ -10,7 +11,8 @@ export const Context = createContext({
 });
 
 export const PostListProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState());
+  const [state, dispatch] =
+    useReducer(reducerLogger(reducer), initialState());
   const contextObj = { state, dispatch };
   return (
     <Context.Provider value={contextObj}>{children}</Context.Provider>

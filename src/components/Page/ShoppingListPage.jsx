@@ -1,22 +1,34 @@
 import ShoppingPostList from './ShoppingPostList';
 import { Context } from '../ShoppingListProvider.jsx';
 import { useContext, useEffect } from 'react';
-import { getShoppingListItems } from '../../services/shopping-list-items';
+import { createShoppingListItem } from '../../services/shopping-list-items';
 // eslint-disable-next-line max-len
-import { shoppingListLoadSuccessAction } from '../actions/shopping-list-actions';
+import { shoppingListCandidateBodyChanged } from '../actions/shopping-list-actions';
+import ShoppingListForm from './ShoppingListForm';
+import { getPostsEffect } from '../../effects/shopping-list-effects';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
   useEffect(() => {
-    (async () => {
-      const posts = await getShoppingListItems();
-      const action = shoppingListLoadSuccessAction(posts);
-      dispatch(action);
-    })();
+    getPostsEffect(dispatch);
   }, []);
   return (
     <>
-      <ShoppingPostList shoppingList={state.shoppingList} />
+      <ShoppingListForm
+        body={state.shoppingCandidateBody}
+        onBodyChanged={(body) => {
+          dispatch(shoppingListCandidateBodyChanged(body));
+        }}
+        onSubmit={async (body) => {
+          await createShoppingListItem(body);
+          getPostsEffect(dispatch);
+        }}
+      />
+      {state.loadingMode === 'Loading' ? (
+        <div>Loading your Shopping List</div>
+      ) : (
+        <ShoppingPostList shoppingList={state.shoppingList} />
+      )}
     </>
   );
 }
