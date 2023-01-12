@@ -9,6 +9,14 @@ export const initialState = () => {
   };
 };
 
-export const reducer = (state, actions) => {
-  return state;
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case 'shopping-list-load-success':
+      return {
+        ...state,
+        shoppingList: action.shoppingList
+      };
+    default:
+      return state;
+  }
 };
