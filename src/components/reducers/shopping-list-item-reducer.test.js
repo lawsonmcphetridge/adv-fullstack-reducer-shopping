@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-len
 import { shoppingListCandidateBodyChanged, shoppingListLoadStartAction } from '../actions/shopping-list-actions';
 import { reducer, initialState } from './shopping-list-reducer';
 

@@ -3,7 +3,7 @@ import { Context } from '../ShoppingListProvider.jsx';
 import { useContext, useEffect } from 'react';
 import { createShoppingListItem } from '../../services/shopping-list-items';
 // eslint-disable-next-line max-len
-import { shoppingListCandidateBodyChanged } from '../actions/shopping-list-actions';
+import { shoppingListCandidateBodyChanged, shoppingListSeenChanged } from '../actions/shopping-list-actions';
 import ShoppingListForm from './ShoppingListForm';
 import { getPostsEffect } from '../../effects/shopping-list-effects';
 
@@ -12,6 +12,9 @@ export default function ShoppingListPage() {
   useEffect(() => {
     getPostsEffect(dispatch);
   }, []);
+  const handleSeenChanged = (postId, seen) => {
+    dispatch(shoppingListSeenChanged(postId, seen));
+  };
   return (
     <>
       <ShoppingListForm
@@ -28,7 +31,10 @@ export default function ShoppingListPage() {
       {state.loadingMode === 'Loading' ? (
         <div>Loading your Shopping List</div>
       ) : (
-        <ShoppingPostList shoppingList={state.shoppingList} />
+        <ShoppingPostList
+          shoppingList={state.shoppingList}
+          handleSeenChanged={(postId, seen) => handleSeenChanged(postId, seen)}
+        />
       )}
     </>
   );

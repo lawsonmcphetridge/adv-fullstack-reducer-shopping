@@ -21,7 +21,14 @@ export const shoppingListErrorAction = (error) => {
 export const shoppingListCandidateBodyChanged = (body) => {
   return {
     body,
-    type: 'shopping-list-candidate-body-changed'
+    type: 'shopping-list-candidate-body-changed',
   };
 };
 
+export const shoppingListSeenChanged = (postId, seen) => {
+  return {
+    postId,
+    seen,
+    type: 'shopping-list-seen-changed',
+  };
+};
