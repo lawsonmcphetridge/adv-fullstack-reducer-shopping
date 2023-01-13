@@ -22,6 +22,7 @@ export default function ShoppingListPage() {
         onSubmit={async (body) => {
           await createShoppingListItem(body);
           getPostsEffect(dispatch);
+          dispatch(shoppingListCandidateBodyChanged(''));
         }}
       />
       {state.loadingMode === 'Loading' ? (
