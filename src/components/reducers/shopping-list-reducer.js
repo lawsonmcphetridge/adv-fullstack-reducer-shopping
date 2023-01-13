@@ -39,7 +39,7 @@ export const reducer = (state, action) => {
       shoppingList[index] = {
         ...shoppingList[index],
         seen: action.seen,
-      };
+      };      
       return {
         ...state,
         shoppingList,
