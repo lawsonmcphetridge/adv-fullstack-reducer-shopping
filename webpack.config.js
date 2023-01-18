@@ -8,6 +8,7 @@ require('dotenv').config();
 
 // eslint-disable-next-line
 module.exports = {
+  mode: 'development',
   entry: './src/index.jsx',
   output: {
     clean: true,
@@ -66,7 +67,8 @@ module.exports = {
                 // class name ([local]) along with part of the hash. This allows
                 // us to be able to see what classes are applied to what
                 // elements in a human readable way.
-                localIdentName: '[name]__[local]__[contenthash:base64:5]',
+                localIdentName:
+                  '[name]__[local]__[contenthash:base64:5]',
               },
               importLoaders: 1,
             },
