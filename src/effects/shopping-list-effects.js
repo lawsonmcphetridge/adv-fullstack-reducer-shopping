@@ -37,7 +37,3 @@ export const updateShoppingListItemEffect = async (
 };
 
 
-// for storing operations.
-// anything that is not react,
-//sending something to database has nothing to react
-// any mutative alteration
